@@ -1,0 +1,10 @@
+.contactList__container {
+  width: 380px;
+  padding-right: 10px;
+}
+
+.containerList__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
