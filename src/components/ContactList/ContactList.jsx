@@ -13,9 +13,9 @@ const ContactList = ({contactRender, onDeleteContact}) =>
     </div>);
 
 
-ContactList.propTypes = {
+/* ContactList.propTypes = {
     contactRender: PropTypes.array,
     onDeleteContact: PropTypes.func,
-  }
+  } */
 
 export default ContactList
