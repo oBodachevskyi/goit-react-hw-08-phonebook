@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import PropTypes from "prop-types"; 
-import css from 'components/ContactForm/ContactForm.module.css'
+import css from 'components/ContactForm/ContactForm.module.css';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/store.js';
+import { nanoid } from 'nanoid';
 
-export default function ContactForm (props) {
+export default function ContactForm () {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('');
-  
+
+  const dispatch = useDispatch();
+    
   const handleInputChange = e => {
     switch (e.target.name) {
       case 'name':
@@ -23,7 +27,8 @@ export default function ContactForm (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-     props.onSubmit(name, number)
+      dispatch(addContact({id: nanoid(),
+      name: name, phone: number}))
       setName('')
       setNumber('')
   }
@@ -59,15 +64,13 @@ export default function ContactForm (props) {
 />
       </label> 
       <br></br>
-      <button type="submit" className={css.contactForm__button}>Add Contacts</button>
+      <button type="submit"
+       className={css.contactForm__button}
+       >Add Contacts</button>
       </form>
   </label>
  </div>)
 }
 
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
-}
 
 

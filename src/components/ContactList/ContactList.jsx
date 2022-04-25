@@ -1,21 +1,28 @@
 import React  from 'react';
-import PropTypes from "prop-types"; 
 import css from 'components/ContactList/ContactList.module.css'
-
-const ContactList = ({contactRender, onDeleteContact}) =>
-    (<div className={css.contactList__container}>
-        <ul>
-        {contactRender.map(({id, name, number}) => 
-            (<li className={css.containerList__item} key={id}>{name}: {number}
-                <button type="button" onClick={() => onDeleteContact(id)} >Delete</button>
-            </li>))} 
-     </ul>
-    </div>);
+import { useSelector, useDispatch } from 'react-redux';
+import { delContact } from 'redux/store.js';
 
 
-ContactList.propTypes = {
-    contactRender: PropTypes.array,
-    onDeleteContact: PropTypes.func,
-  } 
+export default function ContactList() {
+        const dispatch = useDispatch();
+        const contactsRender = useSelector(state => 
+            state.contacts.items);
+        const filter = useSelector(state => state.contacts.filter);
+        
+        let visibleContacts = '';
+        if(contactsRender) {
+            visibleContacts = contactsRender.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
+        } 
 
-export default ContactList
+
+        return (<div className={css.contactList__container}>
+            <ul>
+            {visibleContacts && visibleContacts.map(({id, name, number}) => 
+                (<li className={css.containerList__item} key={id}>{name}: {number}
+                    <button type="button" onClick={()=>dispatch(delContact(id))}>
+                        Delete</button>
+                </li>))} 
+         </ul>
+        </div>)
+    };
