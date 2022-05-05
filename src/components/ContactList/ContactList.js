@@ -1,7 +1,6 @@
 import React, { useEffect }  from 'react';
 import css from 'components/ContactList/ContactList.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-/* import { delContact } from 'redux/store.js'; */
 import * as contactsOperation from '../../redux/contacts/contactsOperations';
 
 
@@ -18,13 +17,9 @@ export default function ContactList() {
             visibleContacts = contactsRender.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
         } 
  
-
         useEffect(()=> {
             dispatch(contactsOperation.fetchContactsList())
         },[dispatch])
-
-
-
 
         return (<div className={css.contactList__container}>
             <ul>

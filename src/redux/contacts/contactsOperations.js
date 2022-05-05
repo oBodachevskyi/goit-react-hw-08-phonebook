@@ -1,51 +1,29 @@
-import * as contactsAction from './contactsAction';
-
-/* import contactsAPI from '../../services/contacatsAPI' */
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://626c34eb5267c14d566e7bb3.mockapi.io';
 
- async function fetchContacts() {
+ const fetchContacts = async() => {
     const { data } = await axios.get(`/contacts`);    
     return data;
 }
 
 
-export const fetchNewContact = (newContact) => async dispatch => {
-    dispatch(contactsAction.fetchNewContactRequest()) 
-  
-    try {
-    await axios.post(`/contacts`, newContact)
-      dispatch(contactsAction.fetchNewContactSuccess()) 
-      dispatch(fetchContactsList()) 
-     
-    } catch (error) {
-        dispatch(contactsAction.fetchNewContactError(error))        
-    }
-    
-}
+export const fetchNewContact = createAsyncThunk('contacts/fetchNewContact',
+    async(newContact, thunkAPI) => { 
+        await axios.post(`/contacts`, newContact)
+        thunkAPI.dispatch(fetchContactsList())
+    }) 
 
-export const fetchDelContact = (delContactid) => async dispatch => {
-    dispatch(contactsAction.fetchDelContactRequest()) 
-  
-    try {
-    await axios.delete(`/contacts/${delContactid}`)
-      dispatch(contactsAction.fetchDelContactSuccess()) 
-      dispatch(fetchContactsList()) 
-     
-    } catch (error) {
-        dispatch(contactsAction.fetchDelContactError(error))        
-    }
-    
-}
+export const fetchDelContact = createAsyncThunk('contacts/fetchDelContacts', 
+async(delContactId, thunkAPI) => {
+    await axios.delete(`/contacts/${delContactId}`)
+    thunkAPI.dispatch(fetchContactsList())
+})
 
 
-export const fetchContactsList = () => async dispatch => {
-    dispatch(contactsAction.fetchContactsRequest())
-    try {
-        const contactsList = await fetchContacts();
-        dispatch(contactsAction.fetchContactsSuccess(contactsList));
-    } catch (error) {
-        dispatch(contactsAction.fetchContactsError(error))
-    }
-}
+export const fetchContactsList = createAsyncThunk('contacts/fetchContactsList',
+async() => {
+    const contactsList = await fetchContacts();
+    return contactsList
+});

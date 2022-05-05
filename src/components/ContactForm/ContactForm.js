@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import css from 'components/ContactForm/ContactForm.module.css';
 import { useDispatch } from 'react-redux';
-/* import { addContact } from '../../redux/contacts/contactsAction';
-import { nanoid } from 'nanoid'; */
 import * as contactsOperations from '../../redux/contacts/contactsOperations'
 
 export default function ContactForm () {
