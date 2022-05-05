@@ -1,10 +1,11 @@
 import React from 'react';
 import css from 'components/ContactForm/ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { handlerFilter } from 'redux/store.js';
+import { handlerFilter } from '../../redux/contacts/contactsAction';
 
 const Filter = () => {
-    const filter = useSelector(state => state.contacts.filter);
+    const filter = useSelector(state => state.contacts.filters);
+  
     const dispatch = useDispatch();
 
     const filterChange = e => {
