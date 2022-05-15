@@ -47,7 +47,7 @@ export function AppBar () {
             <button type='button' className={css.nav__icon}  onClick={handleLogOut} >
                 {symbolsOfName}                 
             </button>
-            {logOut && (<button type='button' className={css.button__out} onClick={() => dispatch(authOperations.logOut()) }>Logout</button>)}
+            {logOut && (<button type='button' className={css.button__out} onClick={() => dispatch(authOperations.logOut())}>Logout</button>)}
             
     </div>
     )
