@@ -17,14 +17,14 @@ export default function ContactList() {
             visibleContacts = contactsRender.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
         } 
  
-        useEffect(()=> {
+       useEffect(()=> {
             dispatch(contactsOperation.fetchContactsList())
-        },[dispatch])
+        },[dispatch]) 
 
         return (<div className={css.contactList__container}>
             <ul>
-            {visibleContacts && visibleContacts.map(({id, name, phone}) => 
-                (<li className={css.containerList__item} key={id}>{name}: {phone}
+            {visibleContacts && visibleContacts.map(({id, name, number}) => 
+                (<li className={css.containerList__item} key={id}>{name}: {number}
                     <button type="button"  onClick={()=>dispatch(contactsOperation.fetchDelContact(id))}>
                         Delete</button>
                 </li>))} 

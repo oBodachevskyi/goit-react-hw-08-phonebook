@@ -1,0 +1,38 @@
+.form__case {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__header {
+    text-align: center;
+    margin-top: 15%;
+}
+
+.form__nameInput {
+    padding-left: 15px;
+    margin-top: 50px;
+}
+
+
+.form__input {
+    margin-left: 20px;
+    margin-right: 20px;
+    
+    width: 90%;
+    height: 30px;
+    
+}
+
+.form__button {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 60px;
+    width: 120px;
+    height: 40px;
+}
+
+.form__nav {
+    margin-right:  auto;
+    margin-left:  auto;    
+ 
+}

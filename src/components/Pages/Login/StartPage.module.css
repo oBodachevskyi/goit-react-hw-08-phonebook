@@ -1,0 +1,15 @@
+.startPage__container {
+    display: flex;
+
+}
+.startPage__caseImg {
+    width: 50% ;
+    height: 100vh;
+    background-image: url('https://previews.123rf.com/images/mingirov/mingirov2002/mingirov200200873/141015630-black-phone-book-icon-isolated-seamless-pattern-on-white-background-address-book-telephone-directory.jpg');
+    background-size: contain;
+}
+
+.startPage__caseForm {
+    width: 50% ;
+}
+

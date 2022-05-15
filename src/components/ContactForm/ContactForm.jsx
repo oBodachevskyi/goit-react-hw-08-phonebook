@@ -27,7 +27,7 @@ export default function ContactForm () {
   const handleSubmit = (e) => {
     e.preventDefault()
       dispatch(contactsOperations.fetchNewContact({/* id: nanoid(), */
-      name: name, phone: number}))
+      name: name, number: number}))
       setName('')
       setNumber('')
   }
